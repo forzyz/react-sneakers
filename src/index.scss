@@ -35,15 +35,6 @@ header {
   }
 }
 
-.button {
-  border-radius: 8px;
-  border: 1px solid #f2f2f2;
-  background: #fff;
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
-}
-
 .search-block {
   border: 1px solid #f3f3f3;
   border-radius: 10px;
@@ -87,6 +78,10 @@ header {
   h2 {
     margin: 0;
     font-size: 24px;
+  }
+
+  .item-title {
+    min-width: 150px;
   }
 }
 
