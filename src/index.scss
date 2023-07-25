@@ -96,7 +96,8 @@ header {
 }
 
 .items {
-  flex: 1;
+  min-height: 60px;
+  max-height: 460px;
 }
 
 .cartEmpty {
