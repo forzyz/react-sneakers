@@ -96,8 +96,7 @@ header {
 }
 
 .items {
-  min-height: 60px;
-  max-height: 460px;
+  flex: 1 1;
 }
 
 .cartEmpty {
@@ -185,6 +184,10 @@ header {
   .greenButton {
     position: relative;
 
+    &:disabled {
+      animation: button-loading 0.6s ease-in-out infinite;
+    }
+
     &:hover {
       img {
         transform: translateX(5px);
@@ -213,11 +216,29 @@ header {
   cursor: pointer;
   transition: background 0.1s ease-in-out;
 
+  
+  &:disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
   &:hover {
     background-color: lighten(#9dd558, 5%);
   }
 
   &:active {
     background-color: darken(#9dd558, 5%);
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
   }
 }

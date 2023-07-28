@@ -12,7 +12,7 @@ function App() {
   const [cartItems, setCartItems] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
-  const [cartOpened, setCardOpened] = React.useState(false);
+  const [cartOpened, setCartOpened] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -61,29 +61,18 @@ function App() {
   };
 
   const onAddToFavorite = async (obj) => {
-    const { data } = await axios.get(
-      "https://64be546a5ee688b6250c34f2.mockapi.io/favorites"
-    );
-
     try {
-      if (
-        favorites.find((item) => item.id === obj.id) &&
-        data.find((item) => item.id === obj.id)
-      ) {
+      if (favorites.find((item) => item.id === obj.id)) {
         axios.delete(
           `https://64be546a5ee688b6250c34f2.mockapi.io/favorites/${obj.id}`
         );
-      } else if (!favorites.find((item) => item.id === obj.id)) {
-        const { data } = await axios.post(
-          "https://64be546a5ee688b6250c34f2.mockapi.io/favorites",
-          obj
-        );
-        setFavorites((prev) => [...prev, data]);
+        setFavorites((prev) => prev.filter((item) => item.id !== obj.id))
       } else {
         axios.post(
           "https://64be546a5ee688b6250c34f2.mockapi.io/favorites",
           obj
         );
+        setFavorites((prev) => [...prev, obj]);
       }
     } catch (err) {
       alert("Failed to add to favorites");
@@ -98,18 +87,33 @@ function App() {
     return cartItems.some((obj) => obj.id === id);
   };
 
+  const isItemFavorited = (id) => {
+    return favorites.some((obj) => obj.id === id);
+  };
+
   return (
-    <AppContext.Provider value={{ items, cartItems, favorites, isItemAdded }}>
+    <AppContext.Provider
+      value={{
+        items,
+        cartItems,
+        favorites,
+        isItemAdded,
+        isItemFavorited,
+        onAddToFavorite,
+        setCartOpened,
+        setCartItems
+      }}
+    >
       <div className="wrapper clear">
         {cartOpened && (
           <Drawer
             items={cartItems}
-            onClose={() => setCardOpened(false)}
+            onClose={() => setCartOpened(false)}
             onRemove={onRemoveItem}
           />
         )}
 
-        <Header onClickCart={() => setCardOpened(true)} />
+        <Header onClickCart={() => setCartOpened(true)} />
 
         <Routes>
           <Route

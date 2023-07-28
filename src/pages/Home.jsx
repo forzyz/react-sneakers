@@ -1,12 +1,10 @@
 import React from "react";
 import Card from "../components/Card";
-import AppContext from "../context";
 import cardStyles from "../components/Card/Card.module.scss";
 import ContentLoader from "react-content-loader";
 
 function Home({
   items,
-  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
@@ -14,8 +12,6 @@ function Home({
   onAddToCard,
   isLoading,
 }) {
-  const { isItemAdded } = React.useContext(AppContext);
-
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -45,7 +41,6 @@ function Home({
             key={item.id}
             onClickFavorite={(obj) => onAddToFavorite(obj)}
             onClickPlus={(obj) => onAddToCard(obj)}
-            isAdded={isItemAdded(item && item.id)}
             {...item}
           />
         ));

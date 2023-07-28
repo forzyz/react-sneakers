@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Card.module.scss";
+import AppContext from "../../context";
 
 function Card({
   id,
@@ -8,20 +9,15 @@ function Card({
   price,
   onClickFavorite,
   onClickPlus,
-  favorited = false,
-  isAdded = false,
 }) {
-  const [isChecked, setIsChecked] = React.useState(isAdded);
-  const [isFavorite, setIsFavorite] = React.useState(favorited);
+  const { isItemAdded, isItemFavorited } = React.useContext(AppContext);
 
   const handleClickPlus = () => {
     onClickPlus({ id, imageUrl, title, price });
-    setIsChecked(!isChecked);
   };
 
   const handleClickFavorite = () => {
     onClickFavorite({ id, imageUrl, title, price });
-    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -30,7 +26,7 @@ function Card({
         <>
           <div className={styles.favorite} onClick={handleClickFavorite}>
             <img
-              src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
+              src={isItemFavorited(id) ? "/img/liked.svg" : "/img/unliked.svg"}
               alt="unliked"
             />
           </div>
@@ -44,7 +40,7 @@ function Card({
             <img
               className={styles.plus}
               onClick={handleClickPlus}
-              src={isChecked ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+              src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
               alt="Plus"
             />
           </div>
