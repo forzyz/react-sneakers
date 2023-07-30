@@ -145,7 +145,7 @@ function App() {
 
         <Routes>
           <Route
-            path="/react-sneakers"
+            path="react-sneakers/"
             exact
             element={
               <Home
@@ -161,12 +161,12 @@ function App() {
             }
           />
           <Route
-            path="react-sneakers/favorites"
+            path="favorites"
             exact
             element={<Favorites onAddToFavorite={onAddToFavorite} />}
           />
           <Route
-            path="react-sneakers/orders"
+            path="orders"
             exact
             element={<Orders onAddToFavorite={onAddToFavorite} />}
           />
