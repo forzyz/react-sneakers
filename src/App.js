@@ -129,8 +129,10 @@ function App() {
         isItemFavorited,
         onAddToFavorite,
         onAddToCart,
+        cartOpened,
         setCartOpened,
         setCartItems,
+        isLoading
       }}
     >
       <div className="wrapper clear">

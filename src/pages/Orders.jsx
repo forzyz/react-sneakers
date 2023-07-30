@@ -3,9 +3,9 @@ import Card from "../components/Card";
 import axios from "axios";
 import AppContext from "../context";
 import { Loader } from "../components/Loader";
+import Info from "../components/Info";
 
 function Orders() {
-  const { onAddToFavorite, onAddToCard } = React.useContext(AppContext);
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -31,14 +31,17 @@ function Orders() {
       </div>
 
       <div className="d-flex flex-wrap">
-        {isLoading
-          ? [...Array(12)].map((_, index) => <Loader key={index} />)
-          : orders.map((item, index) => (
-              <Card
-                key={item.id}
-                {...item}
-              />
-            ))}
+        {isLoading ? (
+          [...Array(12)].map((_, index) => <Loader key={index} />)
+        ) : orders.length > 0 ? (
+          orders.map((item, index) => <Card key={item.id} {...item} />)
+        ) : (
+          <Info
+            title="You don't have orders"
+            description="Order something from the main menu."
+            image="img/sad-smile.svg"
+          />
+        )}
       </div>
     </div>
   );
