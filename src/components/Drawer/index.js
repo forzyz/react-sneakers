@@ -45,7 +45,7 @@ function Drawer({ items = [], onClose, onRemove, opened }) {
           Cart
           <img
             className="cu-p"
-            src="/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Close"
             onClick={onClose}
           />
@@ -70,7 +70,7 @@ function Drawer({ items = [], onClose, onRemove, opened }) {
                   </div>
                   <img
                     className="removeBtn"
-                    src="/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="Remove"
                     onClick={() => onRemove(obj.id)}
                   />
@@ -95,7 +95,7 @@ function Drawer({ items = [], onClose, onRemove, opened }) {
                 onClick={onClickOrder}
                 className="greenButton"
               >
-                Checkout <img src="/img/arrow.svg" alt="Arrow" />
+                Checkout <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </>
@@ -109,8 +109,8 @@ function Drawer({ items = [], onClose, onRemove, opened }) {
             }
             image={
               isOrderComplete
-                ? "/img/complete-order.jpg"
-                : "/img/empty-cart.jpg"
+                ? "img/complete-order.jpg"
+                : "img/empty-cart.jpg"
             }
           />
         )}

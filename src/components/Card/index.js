@@ -29,7 +29,7 @@ function Card({
             <div className={styles.favorite} onClick={handleClickFavorite}>
               <img
                 src={
-                  isItemFavorited(id) ? "/img/liked.svg" : "/img/unliked.svg"
+                  isItemFavorited(id) ? "img/liked.svg" : "img/unliked.svg"
                 }
                 alt="unliked"
               />
@@ -47,7 +47,7 @@ function Card({
                 className={styles.plus}
                 onClick={handleClickPlus}
                 src={
-                  isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"
+                  isItemAdded(id) ? "img/btn-checked.svg" : "img/btn-plus.svg"
                 }
                 alt="Plus"
               />
